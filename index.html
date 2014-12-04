@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" ng-app="todo-timer">
+<head>
+	<title>Title</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="A description for the page">
+	<meta name="author" content="Michael LoNigro">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css"
+
+	<!-- Scripts -->
+	<!-- angular.js CDN (TODO: switch to minified version when finished) -->
+	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+	<script type="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.js"></script>
+	<script src="js/app.js"></script>
+
+</head>
+<body ng-controller="toDoCtrl" ng-init="init()">
+	<div id="todo-none" ng-hide="model.length > 0">
+		<p>There are no items to show. Get to work, swine!</p>
+	</div>
+	<div id="todo-list" ng-show="model.length > 0">
+		<ul class="list-unstyled">
+			<li class="todo-task" ng-repeat="todo in model track by $index">
+				<label class="todo-checkbox-label"></label>
+				<!-- <edit-in-place value="todo.task"></edit-in-place> -->
+				<span class="todoName" ng-bind="todo.task" ng-class="{ 'completed-task': todo.done }"></span>
+				<span class="glyphicon glyphicon-remove pull-right" ng-click="deleteTask($index)"></span>
+				<span class="glyphicon glyphicon-check pull-right" ng-click="completeTask($index)"></span>
+			</li>
+		</ul>
+	</div>
+	<div id="todo-add">
+		<div class="form-group">
+			<input id="new-task-field" class="todo-field" type="text" ng-model="newTask" placeholder="Add New Task" ng-enter>
+			<button id="todo-submit" class="btn btn-default" ng-click="addTask()">Add</button>
+		</div>
+	</div>
+	<div>
+		<button id="clear-complete" class="btn btn-default" ng-click="clearCompleteTasks()">Clear Completed</button>
+	</div>
+	<div class="debug">
+		<p class="text-info">{{ model | json }}</p>
+		<p class="text-info"> model length: {{ model.length }}</p>
+	</div>
+</body>
+</html>

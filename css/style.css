@@ -1,0 +1,37 @@
+.debug{
+	width: 600px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+.todo-task {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 5px;
+	border: 1px solid black;
+}
+
+.todo-task span.glyphicon {
+	cursor: pointer;
+}
+
+.completed-task {
+	text-decoration: line-through;
+}
+
+/* Edit in place directive styling */
+.edit-in-place span {
+	cursor: pointer;
+}
+
+.edit-in-place input {
+	display: none;
+}
+
+.edit-in-place.active span {
+	display: none;
+}
+
+.edit-in-place.active input {
+	display: inline-block;
+}
