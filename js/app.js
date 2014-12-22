@@ -28,11 +28,6 @@ App.controller('toDoCtrl', ['$scope', function ($scope) {
 	}
 
 	$scope.clearCompleteTasks = function () {
-		// for( var i = 0; i < $scope.model.length; i++ ) {
-		// 	if( $scope.model[i].done ) {
-		// 		$scope.model.splice(i, 1);
-		// 	}
-		// }
 		$scope.model = $scope.model.filter(function(item) { return !item.done; });
 	}
 }]);
