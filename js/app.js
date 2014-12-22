@@ -5,7 +5,13 @@ var App = angular.module('todo-timer', [/*'ui.sortable'*/]);
 
 App.controller('toDoCtrl', ['$scope', function ($scope) {
 	$scope.init = function () {
-		$scope.model = [];
+		$scope.model = [{
+			'task': 'This is a test task',
+			'done': false
+		}, {
+			'task': 'This is another test task',
+			'done': false
+		}];
 
 		$scope.show = "All";
 		$scope.currentShow = 0;

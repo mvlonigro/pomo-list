@@ -8,8 +8,8 @@
 
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="css/reset.css">
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> -->
-	<link rel="stylesheet" href="css/bootswatch.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<!--<link rel="stylesheet" href="css/bootswatch.css">-->
 	<!-- <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/paper/bootstrap.min.css" rel="stylesheet"> -->
 	<!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> -->
 	<link rel="stylesheet" href="font-awesome-4.2.0/css/font-awesome.css">
@@ -25,20 +25,21 @@
 
 </head>
 <body ng-controller="toDoCtrl" ng-init="init()">
+	<div id="timer" class="container">
+		Time area
+	</div>
 	<div id="todo-none" ng-hide="model.length > 0">
 		<p>There are no items to show. Get to work, swine!</p>
 	</div>
-	<div id="todo-list" ng-show="model.length > 0">
+	<div id="todo-list" class="container-fluid" ng-show="model.length > 0">
 		<ul class="list-unstyled">
 			<li class="todo-task" ng-repeat="todo in model track by $index">
 				<!-- <label class="todo-checkbox-label"></label> -->
 				<!-- <edit-in-place value="todo.task"></edit-in-place> -->
-				<!-- <span class="todoName" ng-bind="todo.task" ng-class="{ 'completed-task': todo.done }"></span>
-				<span class="fa fa-close fa-2x pull-right" ng-click="deleteTask($index)"></span>
-				<span class="fa fa-check-square-o fa-2x pull-right" ng-click="completeTask($index)"></span> -->
-				<div class="panel panel-primary">
+				<div class="panel" ng-class="{ 'panel-info': !todo.done, 'panel-success': todo.done }">
 					<div class="panel-heading">
-						<h6 class="todoName" ng-bind="todo.task" ng-class="{ 'completed-task': todo.done }"></h6>
+						<span class="fa fa-reorder fa-2x pull-left"></span>
+						<span class="todo-name" ng-bind="todo.task" ng-class="{ 'completed-task': todo.done }"></span>
 					</div>
 					<div class="panel-body">
 						<span class="fa fa-close fa-2x pull-right" ng-click="deleteTask($index)"></span>
@@ -48,16 +49,16 @@
 			</li>
 		</ul>
 	</div>
-	<div id="todo-add">
+	<div id="todo-add" class="container">
 		<div class="form-group">
-			<input id="new-task-field" class="todo-field" type="text" ng-model="newTask" placeholder="Add New Task" ng-enter>
-			<button id="todo-submit" class="btn btn-default" ng-click="addTask()">Add</button>
+			<input id="new-task-field" class="todo-field form-control" type="text" ng-model="newTask" placeholder="Add New Task" ng-enter>
 		</div>
 	</div>
-	<div>
-		<button id="clear-complete" class="btn btn-default" ng-click="clearCompleteTasks()">Clear Completed</button>
+	<div id="bottom-btns" class="container">
+		<button id="todo-submit" class="btn btn-primary btn-block" ng-click="addTask()">Add</button>
+		<button id="clear-complete" class="btn btn-default btn-block" ng-click="clearCompleteTasks()">Clear Completed</button>
 	</div>
-	<div class="debug">
+	<div class="debug container">
 		<p class="text-info">{{ model | json }}</p>
 		<p class="text-info"> model length: {{ model.length }}</p>
 	</div>

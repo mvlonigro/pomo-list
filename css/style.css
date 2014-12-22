@@ -1,4 +1,5 @@
-.debug{
+.debug {
+	clear: left;
 	width: 600px;
 	margin: 0 auto;
 	margin-top: 30px;
@@ -11,8 +12,24 @@
 	border: 1px solid black;
 }*/
 
+#bottom-btns, #todo-add {
+	width: 60%;
+	float: left;
+}
+
+.todo-name {
+	margin-left: 25px;
+	font-weight: bold;
+	font-size: 24px
+}
+
 .todo-task span.fa {
 	cursor: pointer;
+}
+
+.todo-task span.fa-reorder {
+	cursor: grab;
+	margin-top: 3px;
 }
 
 .completed-task {
