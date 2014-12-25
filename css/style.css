@@ -12,6 +12,12 @@
 	border: 1px solid black;
 }*/
 
+#timer {
+	margin-bottom: 15px;
+	padding: 10px;
+	border-bottom: 1px grey solid;
+}
+
 #bottom-btns, #todo-add {
 	width: 60%;
 	float: left;

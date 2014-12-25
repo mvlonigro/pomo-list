@@ -1,7 +1,7 @@
 
 'use strict';
 
-var App = angular.module('todo-timer', [/*'ui.sortable'*/]);
+var App = angular.module('todo-timer', ['ui.sortable']);
 
 App.controller('toDoCtrl', ['$scope', function ($scope) {
 	$scope.init = function () {
@@ -31,11 +31,15 @@ App.controller('toDoCtrl', ['$scope', function ($scope) {
 
 	$scope.completeTask = function (ind) {
 		$scope.model[ind].done = !$scope.model[ind].done;
-	}
+	};
 
 	$scope.clearCompleteTasks = function () {
 		$scope.model = $scope.model.filter(function(item) { return !item.done; });
-	}
+	};
+
+  $scope.sortableOptions = {
+    handle: ".fa-reorder"
+  };
 }]);
 
 
