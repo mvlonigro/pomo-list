@@ -27,16 +27,17 @@
 </head>
 <body ng-controller="toDoCtrl" ng-init="init()">
 	<div id="timer" class="container">
-		Time area
+		<h1 id="time">{{ globalTime }}</h1><br />
+		<button id="start-timer" class="btn btn-primary" ng-click="startTimer()">Start Timer</button>
+		<button id="stop-timer" class="btn btn-default" ng-click="stopTimer()">Stop Timer</button>
+		<button id="reset-timer" class="btn btn-default" ng-click="resetTimer()">Reset Timer</button>
 	</div>
 	<div id="todo-none" ng-hide="model.length > 0">
-		<p>There are no items to show. Get to work, swine!</p>
+		<!-- What should go here?? -->
 	</div>
 	<div id="todo-list" class="container-fluid" ng-show="model.length > 0">
 		<ul ui-sortable="sortableOptions" class="list-unstyled" ng-model="model">
 			<li class="todo-task" ng-repeat="todo in model track by $index">
-				<!-- <label class="todo-checkbox-label"></label> -->
-				<!-- <edit-in-place value="todo.task"></edit-in-place> -->
 				<div class="panel" ng-class="{ 'panel-info': !todo.done, 'panel-success': todo.done }">
 					<div class="panel-heading">
 						<span class="fa fa-reorder fa-2x pull-left"></span>
@@ -62,6 +63,7 @@
 	<div class="debug container">
 		<p class="text-info">{{ model | json }}</p>
 		<p class="text-info"> model length: {{ model.length }}</p>
+		<p class="text-info"> global time num: {{ globalTimeNum }}
 	</div>
 </body>
 </html>
