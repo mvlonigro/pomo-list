@@ -26,11 +26,24 @@
 
 </head>
 <body ng-controller="toDoCtrl" ng-init="init()">
-	<div id="timer" class="container">
-		<h1 id="time">{{ globalTime }}</h1><br />
-		<button id="start-timer" class="btn btn-primary" ng-click="startTimer()">Start Timer</button>
-		<button id="stop-timer" class="btn btn-default" ng-click="stopTimer()">Stop Timer</button>
-		<button id="reset-timer" class="btn btn-default" ng-click="resetTimer()">Reset Timer</button>
+	<div id="timers" class="container">
+		<div id="task-timer">
+			<h1 id="global-time" class="text-center">{{ globalTime }}</h1><br />
+			<button id="start-timer" class="btn btn-primary" ng-click="startTimer()">Start Timer</button>
+			<button id="stop-timer" class="btn btn-default" ng-click="stopTimer()">Stop Timer</button>
+			<button id="reset-timer" class="btn btn-default" ng-click="resetTimer()">Reset Timer</button>
+		</div>
+		<div id="title">
+			<h1>Pomo Timer</h1>
+			<h2><<< Task Timer</h2>
+			<h3 class="text-center">Rest Timer >>></h3>
+		</div>
+		<div id="rest-timer">
+			<h2 id="rest-time" class="text-center">{{ restTime }}</h2><br />
+			<button id="start-rest" class="btn btn-primary btn-sm" ng-click="startRest()">Start Rest</button>
+			<button id="stop-rest" class="btn btn-default btn-sm" ng-click="stopRest()">Stop Rest</button>
+			<button id="reset-rest" class="btn btn-default btn-sm" ng-click="resetRest()">Reset Rest</button>
+		</div>
 	</div>
 	<div id="todo-none" ng-hide="model.length > 0">
 		<!-- What should go here?? -->
@@ -44,6 +57,7 @@
 						<span class="todo-name" ng-bind="todo.task" ng-class="{ 'completed-task': todo.done }"></span>
 					</div>
 					<div class="panel-body">
+						<span class="task-time pull-left">Time spent on this task: <span class="time">{{ formatTime(todo.time) }}</span></span>
 						<span class="fa fa-close fa-2x pull-right" ng-click="deleteTask($index)"></span>
 						<span class="fa fa-check-square-o fa-2x pull-right" ng-click="completeTask($index)"></span>
 					</div>

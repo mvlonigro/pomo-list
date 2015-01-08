@@ -4,19 +4,54 @@
 	margin: 0 auto;
 	margin-top: 30px;
 }
-/*
-.todo-task {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding: 5px;
-	border: 1px solid black;
-}*/
 
-#timer {
-	text-align: center;
+#todo-list {
+	margin-top: 30px;
+}
+
+#timers {
+	/*text-align: center;*/
 	margin-bottom: 15px;
 	padding: 10px;
 	border-bottom: 1px grey solid;
+}
+
+#task-timer {
+	display: inline-block;
+	margin-left: 10%;
+}
+
+#global-time {
+	font-weight: bolder;
+	font-size: 70px;
+}
+
+#rest-timer {
+	display: inline-block;
+	float: right;
+	margin-right: 10%;
+	margin-top: 45px;
+}
+
+#rest-time {
+	font-size: 40px;
+}
+
+#title {
+	display: inline-block;
+	margin-left: 60px;
+}
+
+#title h1 {
+	font-size: 50px;
+}
+
+#title h2 {
+	
+}
+
+#title h3 {
+
 }
 
 #bottom-btns, #todo-add {
@@ -28,6 +63,15 @@
 	margin-left: 25px;
 	font-weight: bold;
 	font-size: 24px
+}
+
+.task-time {
+	font-size: 20px;
+}
+
+.task-time .time {
+	font-size: 24px;
+	font-weight: bold;
 }
 
 .todo-task span.fa {
