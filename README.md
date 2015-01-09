@@ -14,5 +14,6 @@ Things I would still like to implement
 - Allow changing of the rest timer starting point
 - Allow editing of the text of the todo items
 - Add HTML5 desktop notifications
+- Change the color scheme from blue-based to red-based
 
 
