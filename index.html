@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en" ng-app="todo-timer">
+<html lang="en" ng-app="todo-timer" ng-controller="toDoCtrl" ng-init="init()">
 <head>
-	<title>Title</title>
+	<title>Pomo Timer: {{ formatTime(globalTimeNum) }}</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="A description for the page">
 	<meta name="author" content="Michael LoNigro">
@@ -25,21 +25,19 @@
 	<script src="js/app.js"></script>
 
 </head>
-<body ng-controller="toDoCtrl" ng-init="init()">
+<body>
 	<div id="timers" class="container">
 		<div id="task-timer">
-			<h1 id="global-time" class="text-center">{{ globalTime }}</h1><br />
+			<h1 id="global-time" class="text-center">{{ formatTime(globalTimeNum) }}</h1><br />
 			<button id="start-timer" class="btn btn-primary" ng-click="startTimer()">Start Timer</button>
 			<button id="stop-timer" class="btn btn-default" ng-click="stopTimer()">Stop Timer</button>
 			<button id="reset-timer" class="btn btn-default" ng-click="resetTimer()">Reset Timer</button>
 		</div>
 		<div id="title">
 			<h1>Pomo Timer</h1>
-			<h2><<< Task Timer</h2>
-			<h3 class="text-center">Rest Timer >>></h3>
 		</div>
 		<div id="rest-timer">
-			<h2 id="rest-time" class="text-center">{{ restTime }}</h2><br />
+			<h2 id="rest-time" class="text-center">{{ formatTime(restTimeNum) }}</h2><br />
 			<button id="start-rest" class="btn btn-primary btn-sm" ng-click="startRest()">Start Rest</button>
 			<button id="stop-rest" class="btn btn-default btn-sm" ng-click="stopRest()">Stop Rest</button>
 			<button id="reset-rest" class="btn btn-default btn-sm" ng-click="resetRest()">Reset Rest</button>
@@ -51,7 +49,7 @@
 	<div id="todo-list" class="container-fluid" ng-show="model.length > 0">
 		<ul ui-sortable="sortableOptions" class="list-unstyled" ng-model="model">
 			<li class="todo-task" ng-repeat="todo in model track by $index">
-				<div class="panel" ng-class="{ 'panel-info': !todo.done, 'panel-success': todo.done }">
+				<div class="panel" ng-class="{ 'panel-info': !todo.done && !todo.primary, 'panel-success': todo.done, 'panel-primary': todo.primary }">
 					<div class="panel-heading">
 						<span class="fa fa-reorder fa-2x pull-left"></span>
 						<span class="todo-name" ng-bind="todo.task" ng-class="{ 'completed-task': todo.done }"></span>
@@ -74,10 +72,10 @@
 		<button id="todo-submit" class="btn btn-primary btn-block" ng-click="addTask()">Add</button>
 		<button id="clear-complete" class="btn btn-default btn-block" ng-click="clearCompleteTasks()">Clear Completed</button>
 	</div>
-	<div class="debug container">
+<!-- 	<div class="debug container">
 		<p class="text-info">{{ model | json }}</p>
 		<p class="text-info"> model length: {{ model.length }}</p>
 		<p class="text-info"> global time num: {{ globalTimeNum }}
-	</div>
+	</div> -->
 </body>
 </html>

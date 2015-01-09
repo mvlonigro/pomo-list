@@ -18,7 +18,7 @@
 
 #task-timer {
 	display: inline-block;
-	margin-left: 10%;
+	margin-left: 7%;
 }
 
 #global-time {
@@ -30,7 +30,7 @@
 	display: inline-block;
 	float: right;
 	margin-right: 10%;
-	margin-top: 45px;
+	margin-top: 37px;
 }
 
 #rest-time {
@@ -39,11 +39,12 @@
 
 #title {
 	display: inline-block;
-	margin-left: 60px;
+	margin-left: 5%;
 }
 
 #title h1 {
 	font-size: 50px;
+	font-weight: bolder;
 }
 
 #title h2 {
@@ -56,7 +57,7 @@
 
 #bottom-btns, #todo-add {
 	width: 60%;
-	float: left;
+	/*float: left*/;
 }
 
 .todo-name {
@@ -88,7 +89,7 @@
 }
 
 /* Edit in place directive styling */
-.edit-in-place span {
+/*.edit-in-place span {
 	cursor: pointer;
 }
 
@@ -102,4 +103,4 @@
 
 .edit-in-place.active input {
 	display: inline-block;
-}
+}*/

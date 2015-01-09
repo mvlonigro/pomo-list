@@ -5,25 +5,22 @@ var App = angular.module('todo-timer', ['ui.sortable']);
 
 App.controller('toDoCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.init = function() {
-		$scope.model = [{
+		$scope.model = [/*{
 			'task': 'This is a test task',
 			'done': false,
-			'time': 0
+			'time': 0,
+			'primary': true
 		}, {
 			'task': 'This is another test task',
 			'done': false,
-			'time': 0
-		}];
+			'time': 0,
+			'primary': false
+		}*/];
 
 		// Global time is stored in seconds
 		$scope.globalTimeNum = 0;
-		$scope.globalTime = formatTime($scope.globalTimeNum);
-
 		$scope.restTimeNum = 300;
-		$scope.restTime = formatTime($scope.restTimeNum);
 
-		$scope.show = "All";
-		$scope.currentShow = 0;
 	};
 
 
@@ -31,27 +28,32 @@ App.controller('toDoCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.addTask = function() {
 		// Add to the end of the array model
 		if ($scope.newTask.length > 0) {
-			$scope.model.push({ task: $scope.newTask, done: false });
+			$scope.model.push({ task: $scope.newTask, done: false, time: 0, primary: false });
+			updatePrimaryTask();
 		}
 		$scope.newTask= '';
 	};
 
 	$scope.deleteTask = function(ind) {
 		$scope.model.splice(ind, 1);
+		updatePrimaryTask();
 	};
 
 	$scope.completeTask = function(ind) {
 		$scope.model[ind].done = !$scope.model[ind].done;
+		updatePrimaryTask();
 	};
 
 	$scope.clearCompleteTasks = function() {
 		$scope.model = $scope.model.filter(function(item) { return !item.done; });
+		updatePrimaryTask();
 	};
 
 
 	// Timer interface functions
 	$scope.startTimer = function() {
 		if (!_globalTimerRunning) {
+			$scope.stopRest();
 			incrementTimer();
 		}
 	};
@@ -63,11 +65,12 @@ App.controller('toDoCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 	$scope.resetTimer = function() {
 		$scope.stopTimer();
-		adjustTime(0);
+		$scope.globalTimeNum = 0;
 	};
 
 	$scope.startRest = function() {
 		if (!_restTimerRunning) {
+			$scope.stopTimer();
 			decrementRest();
 		}
 	};
@@ -79,11 +82,11 @@ App.controller('toDoCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 	$scope.resetRest = function() {
 		$scope.stopRest();
-		adjustRest(300);
+		$scope.restTimeNum = 300;
 	};
 
 	$scope.formatTime = function(time) {
-		formatTime(time);
+		return formatTime(time);
 	}
 
 
@@ -91,21 +94,18 @@ App.controller('toDoCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	var _globalTimerRunning = false;
 	var _restTimerRunning = false;
 
-	function adjustTime(newTime) {
-		$scope.globalTimeNum = newTime;
-		$scope.globalTime = formatTime($scope.globalTimeNum);
-	}
-
 	function incrementTimer() {
 		_globalTimerRunning = true;
-		var newTime = $scope.globalTimeNum + 1;
-		adjustTime(newTime);
-		$scope.timeout = $timeout(incrementTimer, 1000);
-	}
 
-	function adjustRest(newTime) {
-		$scope.restTimeNum = newTime;
-		$scope.restTime = formatTime($scope.restTimeNum);
+		if ($scope.model.length > 0) {
+			var primaryInd = getTopIncompleteTaskIndex();
+			if (primaryInd > -1) {
+				$scope.model[primaryInd].time++;
+			}
+		}
+
+		$scope.globalTimeNum++;
+		$scope.timeout = $timeout(incrementTimer, 1000);
 	}
 
 	function decrementRest() {
@@ -113,12 +113,15 @@ App.controller('toDoCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			return;
 		}
 		_restTimerRunning = true;
-		var newTime = $scope.restTimeNum - 1;
-		adjustRest(newTime);
+		$scope.restTimeNum--;
 		$scope.restTimeout = $timeout(decrementRest, 1000);
 	}
 
 	function formatTime(time) {
+		// if (typeof(time) !== 'int') {
+		// 	return '';
+		// }
+
 		// Format seconds into hours:minutes:seconds format
 		var hours = Math.floor(time / 3600);
 		var minutes = Math.floor((time - (hours * 3600)) / 60);
@@ -138,9 +141,34 @@ App.controller('toDoCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		return hours + ':' + minutes + ':' + seconds;
 	}
 
+	function getTopIncompleteTaskIndex() {
+		for (var i = 0; i < $scope.model.length; i++) {
+			if (!$scope.model[i].done) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	function updatePrimaryTask() {
+		for (var i = 0; i < $scope.model.length; i++) {
+			$scope.model[i].primary = false;
+		}
+
+		var primaryInd = getTopIncompleteTaskIndex();
+		if (primaryInd > -1) {
+			$scope.model[primaryInd].primary = true;
+		}
+	}
+
+
 	// Configure the sortable
 	$scope.sortableOptions = {
-		handle: ".fa-reorder"
+		'handle': ".fa-reorder",
+		'stop': function(event, ui) {
+			// After each re-order, we need to change the primary task
+			updatePrimaryTask();
+		}
 	};
 }]);
 
