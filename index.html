@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" ng-app="todo-timer" ng-controller="toDoCtrl" ng-init="init()">
 <head>
-	<title>Pomo Timer: {{ formatTime(globalTimeNum) }}</title>
+	<title>Pomo List: {{ formatTime(globalTimeNum) }}</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="A description for the page">
 	<meta name="author" content="Michael LoNigro">
@@ -34,7 +34,7 @@
 			<button id="reset-timer" class="btn btn-default" ng-click="resetTimer()">Reset Timer</button>
 		</div>
 		<div id="title">
-			<h1>Pomo Timer</h1>
+			<h1>Pomo List</h1>
 		</div>
 		<div id="rest-timer">
 			<h2 id="rest-time" class="text-center">{{ formatTime(restTimeNum) }}</h2><br />
