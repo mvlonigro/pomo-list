@@ -1,0 +1,106 @@
+.debug {
+	clear: left;
+	width: 600px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+#todo-list {
+	margin-top: 30px;
+}
+
+#timers {
+	/*text-align: center;*/
+	margin-bottom: 15px;
+	padding: 10px;
+	border-bottom: 1px grey solid;
+}
+
+#task-timer {
+	display: inline-block;
+	margin-left: 7%;
+}
+
+#global-time {
+	font-weight: bolder;
+	font-size: 70px;
+}
+
+#rest-timer {
+	display: inline-block;
+	float: right;
+	margin-right: 10%;
+	margin-top: 37px;
+}
+
+#rest-time {
+	font-size: 40px;
+}
+
+#title {
+	display: inline-block;
+	margin-left: 7%;
+}
+
+#title h1 {
+	font-size: 50px;
+	font-weight: bolder;
+}
+
+#title h2 {
+	
+}
+
+#title h3 {
+
+}
+
+#bottom-btns, #todo-add {
+	width: 60%;
+	/*float: left*/;
+}
+
+.todo-name {
+	margin-left: 25px;
+	font-weight: bold;
+	font-size: 24px
+}
+
+.task-time {
+	font-size: 20px;
+}
+
+.task-time .time {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.todo-task span.fa {
+	cursor: pointer;
+}
+
+.todo-task span.fa-reorder {
+	cursor: grab;
+	margin-top: 3px;
+}
+
+.completed-task {
+	text-decoration: line-through;
+}
+
+/* Edit in place directive styling */
+/*.edit-in-place span {
+	cursor: pointer;
+}
+
+.edit-in-place input {
+	display: none;
+}
+
+.edit-in-place.active span {
+	display: none;
+}
+
+.edit-in-place.active input {
+	display: inline-block;
+}*/
