@@ -1,6 +1,7 @@
 pomo list
 =========
 AngularJS productivity tool: pomodoro style timer + todo list
+
 [Try it out!](http://mvlonigro.github.io/pomo-list/)
 
 The Basics
