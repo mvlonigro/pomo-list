@@ -2,7 +2,7 @@ pomo list
 =========
 AngularJS productivity tool: pomodoro style timer + todo list
 
-[Try it out!](http://mvlonigro.github.io/pomo-list/)
+<a href="http://mvlonigro.github.io/pomo-list/" target="_blank">Try it out!</a>
 
 The Basics
 ----------
